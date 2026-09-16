@@ -21,6 +21,47 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeTab = "dashboard";
   let lastAiReasoningUpdate = 0;
   let tourCurrentStep = 0;
+  const authStorageKey = "ecogridAuthenticatedUser";
+  const landingPage = document.getElementById("landingPage");
+
+  function readStoredUser() {
+    try {
+      const storedUser = sessionStorage.getItem(authStorageKey);
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+      console.warn("Unable to restore the EcoGrid AI session.", error);
+      sessionStorage.removeItem(authStorageKey);
+      return null;
+    }
+  }
+
+  function showPublicLanding() {
+    if (landingPage) {
+      landingPage.classList.remove("landing-page-hidden");
+      landingPage.style.display = "";
+      landingPage.scrollTop = 0;
+    }
+    if (authOverlay) {
+      authOverlay.classList.add("dismissed");
+      authOverlay.style.display = "none";
+    }
+  }
+
+  function showLoginExperience() {
+    if (landingPage) {
+      landingPage.classList.add("landing-page-hidden");
+    }
+    if (authOverlay) {
+      authOverlay.classList.remove("dismissed");
+      authOverlay.style.display = "flex";
+      if (loginFormView) loginFormView.style.display = "block";
+      if (registerFormView) registerFormView.style.display = "none";
+      if (forgotPasswordFormView) forgotPasswordFormView.style.display = "none";
+    }
+  }
+
+  currentUser = readStoredUser();
+  if (currentUser) currentRole = currentUser.role || "admin";
 
   // 1. Authentication Page Controller
   const authOverlay = document.getElementById("authPageOverlay");
@@ -176,17 +217,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToWelcomeFromLoginBtn = document.getElementById("backToWelcomeFromLoginBtn");
   if (backToWelcomeFromLoginBtn) {
     backToWelcomeFromLoginBtn.addEventListener("click", () => {
-      if (authOverlay) {
-        authOverlay.classList.add("dismissed");
-        authOverlay.style.display = "none";
-      }
-      showWelcomeSplash();
+      showPublicLanding();
+      history.replaceState({ publicLanding: true }, "", window.location.href);
     });
   }
 
   function loginUser(userData, directToDashboard = true) {
     currentUser = userData;
     currentRole = userData.role || "admin";
+    sessionStorage.setItem(authStorageKey, JSON.stringify(userData));
 
     // Update Header User Profile
     const headerName = document.getElementById("headerUserName");
@@ -212,8 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
       welcomeSplash.classList.add("dismissed");
       welcomeSplash.style.display = "none";
     }
+    if (landingPage) landingPage.classList.add("landing-page-hidden");
 
-    switchTab("dashboard");
+    if (directToDashboard) switchTab("dashboard");
     playSound("opt");
     showToast(`Logged in as ${userData.name} — EcoGrid AI Dashboard active`, "success");
   }
@@ -223,13 +263,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (headerLogoutBtn) {
     headerLogoutBtn.addEventListener("click", () => {
       currentUser = null;
-      if (authOverlay) {
-        authOverlay.classList.remove("dismissed");
-        authOverlay.style.display = "flex";
-        loginFormView.style.display = "block";
-        registerFormView.style.display = "none";
-        forgotPasswordFormView.style.display = "none";
-      }
+      sessionStorage.removeItem(authStorageKey);
+      activeTab = "dashboard";
+      showPublicLanding();
+      history.replaceState({ publicLanding: true }, "", window.location.href);
       if (welcomeSplash) {
         welcomeSplash.style.display = "none";
       }
@@ -291,6 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (registerFormView) registerFormView.style.display = "none";
         if (forgotPasswordFormView) forgotPasswordFormView.style.display = "none";
       }
+      if (landingPage) landingPage.classList.add("landing-page-hidden");
       playSound("click");
     });
   }
@@ -318,6 +356,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewSections = document.querySelectorAll(".view-section");
 
   function switchTab(tabId) {
+    if (!currentUser) {
+      showLoginExperience();
+      return;
+    }
     activeTab = tabId;
     navItems.forEach(item => {
       if (item.dataset.tab === tabId) item.classList.add("active");
@@ -1318,7 +1360,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initial tab setup
-  switchTab("dashboard");
+  // Initial tab setup: public visitors stay on the landing page until they authenticate.
+  if (currentUser) {
+    loginUser(currentUser, true);
+  } else {
+    showPublicLanding();
+  }
   updateRolePermissions();
+
+  window.addEventListener("pageshow", () => {
+    if (!currentUser) showPublicLanding();
+  });
+
+  window.addEventListener("popstate", () => {
+    if (!currentUser) {
+      history.replaceState({ publicLanding: true }, "", window.location.href);
+      showPublicLanding();
+    }
+  });
 });

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const launchButtons = document.querySelectorAll("[data-launch-platform]");
   const menuToggle = document.getElementById("landingMenuToggle");
   const navLinks = document.getElementById("landingNavLinks");
-  const existingLaunchButton = document.getElementById("welcomeJudgeDirectBtn");
+  const existingLoginButton = document.getElementById("welcomeOpenLoginBtn");
 
   launchButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         landingPage.classList.add("landing-page-hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-      // Reuse the platform's existing direct-access flow rather than duplicating login logic.
-      if (existingLaunchButton) existingLaunchButton.click();
+      // Reuse the platform's existing login experience rather than bypassing authentication.
+      if (existingLoginButton) existingLoginButton.click();
     });
   });
 

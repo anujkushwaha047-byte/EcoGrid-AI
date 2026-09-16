@@ -4,20 +4,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoGrid AI - AI-Powered Renewable & Sustainable Energy Management Platform | SIH 2026</title>
+  <title>Nexon AI | Renewable Energy Intelligence Platform</title>
   <meta name="description"
     content="EcoGrid AI is an enterprise renewable energy management platform combining virtual IoT simulation, 24h predictive forecasting, Gemini Flash AI intelligence, and automated load optimization for SIH 2026 Problem Statement 26200.">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="landing.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 
 <body>
 
+  <!-- Nexon AI public landing page. The existing platform remains mounted below it. -->
+  <div class="landing-page" id="landingPage">
+    <nav class="landing-nav" aria-label="Landing page navigation">
+      <a class="landing-brand" href="#landingHome" aria-label="Nexon AI home">
+        <span class="landing-brand-mark">✦</span>
+        <span>NEXON <b>AI</b></span>
+      </a>
+      <button class="landing-menu-toggle" id="landingMenuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="landing-nav-links" id="landingNavLinks">
+        <a href="#landingHome">Home</a>
+        <a href="#intelligence">Intelligence</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#analytics">Analytics</a>
+        <button class="landing-nav-cta" data-launch-platform>Launch Platform <span>↗</span></button>
+      </div>
+    </nav>
+
+    <main>
+      <section class="landing-hero landing-section" id="landingHome">
+        <div class="landing-hero-copy">
+          <div class="landing-eyebrow"><span class="landing-live-dot"></span> Intelligent energy, in motion</div>
+          <h1>NEXON <span>AI</span></h1>
+          <p class="landing-hero-subtitle">AI-Powered Renewable Energy Intelligence Platform</p>
+          <p class="landing-hero-description">Monitor, predict, simulate and optimize renewable energy systems using intelligent analytics and AI-driven insights.</p>
+          <div class="landing-actions">
+            <button class="landing-button landing-button-primary" data-launch-platform>Launch Nexon AI <span>↗</span></button>
+            <a class="landing-button landing-button-ghost" href="#intelligence">Explore Intelligence <span>↓</span></a>
+          </div>
+          <div class="landing-hero-meta"><span>● Live system intelligence</span><span>◌ Built for renewable operators</span></div>
+        </div>
+        <div class="landing-hero-visual" aria-label="Renewable energy intelligence visualization">
+          <div class="landing-orbit landing-orbit-one"></div>
+          <div class="landing-orbit landing-orbit-two"></div>
+          <div class="landing-energy-core"><span>✦</span><small>AI CORE</small></div>
+          <div class="landing-node landing-node-solar"><i>☀</i><b>Solar</b><small>84.6 kW</small></div>
+          <div class="landing-node landing-node-wind"><i>♒</i><b>Wind</b><small>42.8 kW</small></div>
+          <div class="landing-node landing-node-grid"><i>⌁</i><b>Grid</b><small>Balanced</small></div>
+          <div class="landing-hero-chart"><span>LIVE ENERGY FLOW</span><div class="landing-chart-line"></div><small>Monitoring <b>24 / 7</b></small></div>
+        </div>
+      </section>
+
+      <section class="landing-highlights landing-section" id="analytics" aria-label="Platform highlights">
+        <div class="landing-highlight"><strong>AI-Powered</strong><span>Intelligent energy analysis</span></div>
+        <div class="landing-highlight"><strong>Predictive</strong><span>Energy generation forecasting</span></div>
+        <div class="landing-highlight"><strong>Adaptive</strong><span>Dynamic optimization</span></div>
+        <div class="landing-highlight"><strong>Real-Time</strong><span>Energy monitoring & insights</span></div>
+      </section>
+
+      <section class="landing-content-section landing-section" id="intelligence">
+        <div class="landing-section-heading"><div><span class="landing-kicker">THE INTELLIGENCE LAYER</span><h2>Intelligence Behind<br><em>the Grid</em></h2></div><p>Nexon AI brings prediction, simulation and action into one clear operating picture for renewable energy systems.</p></div>
+        <div class="landing-feature-grid">
+          <article class="landing-feature-card"><span class="landing-card-icon">⌁</span><h3>Energy Prediction</h3><p>Predict renewable energy generation using historical and simulated data.</p></article>
+          <article class="landing-feature-card"><span class="landing-card-icon">◈</span><h3>Smart Optimization</h3><p>Optimize energy utilization and distribution based on available conditions.</p></article>
+          <article class="landing-feature-card"><span class="landing-card-icon">△</span><h3>Anomaly Detection</h3><p>Identify unusual energy behavior and potential system issues.</p></article>
+          <article class="landing-feature-card"><span class="landing-card-icon">◌</span><h3>Simulation Engine</h3><p>Simulate renewable-energy scenarios before making decisions.</p></article>
+          <article class="landing-feature-card"><span class="landing-card-icon">✦</span><h3>AI Intelligence</h3><p>Generate intelligent insights and recommendations from energy data.</p></article>
+          <article class="landing-feature-card"><span class="landing-card-icon">↗</span><h3>Energy Flow Visualization</h3><p>Visualize how energy moves through the system.</p></article>
+        </div>
+      </section>
+
+      <section class="landing-process-section landing-section" id="how-it-works">
+        <div class="landing-section-heading centered"><span class="landing-kicker">A CLEAR PATH TO BETTER ENERGY</span><h2>From signal to <em>action</em></h2><p>Every decision is grounded in live data and made easier to understand.</p></div>
+        <div class="landing-process-grid">
+          <div class="landing-process-step"><b>01</b><span>◉</span><h3>Monitor</h3><p>Collect and visualize renewable energy data.</p></div>
+          <div class="landing-process-step"><b>02</b><span>⌁</span><h3>Predict</h3><p>Analyze patterns and forecast energy generation.</p></div>
+          <div class="landing-process-step"><b>03</b><span>◈</span><h3>Optimize</h3><p>Determine better energy utilization strategies.</p></div>
+          <div class="landing-process-step"><b>04</b><span>↗</span><h3>Act</h3><p>Provide actionable AI-driven insights.</p></div>
+        </div>
+      </section>
+
+      <section class="landing-preview-section landing-section" id="features">
+        <div class="landing-preview-copy"><span class="landing-kicker">ONE PLATFORM. FULL VISIBILITY.</span><h2>See the system<br><em>as it happens.</em></h2><p>Step into the existing Nexon AI command center to explore live telemetry, forecasts, optimization recommendations, anomaly alerts and energy flow.</p><button class="landing-button landing-button-primary" data-launch-platform>Open Full Platform <span>→</span></button></div>
+        <div class="landing-dashboard-preview" aria-label="Preview of Nexon AI dashboard">
+          <div class="preview-topbar"><span class="preview-logo">✦ NEXON AI</span><span class="preview-status"><i></i> SYSTEM ONLINE</span></div>
+          <div class="preview-body"><aside><span class="preview-active"></span><span></span><span></span><span></span><span></span></aside><div class="preview-main"><div class="preview-heading"><div><small>OVERVIEW / LIVE</small><h3>Energy Command Center</h3></div><span>Today, 16 Sep 2026</span></div><div class="preview-metrics"><div><small>Solar generation</small><strong>84.6 <i>kW</i></strong><em>↗ 12.4%</em></div><div><small>Renewable utilization</small><strong>86 <i>%</i></strong><em>↗ Optimal</em></div><div><small>AI confidence</small><strong>94 <i>%</i></strong><em>● Active</em></div></div><div class="preview-chart"><small>LIVE MICROGRID DYNAMICS</small><div class="preview-chart-lines"></div><div class="preview-axis"><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div></div></div></div>
+        </div>
+      </section>
+
+      <section class="landing-ai-section landing-section"><div class="landing-ai-glow">✦</div><div><span class="landing-kicker">INTELLIGENCE, AMPLIFIED</span><h2>Your Energy System,<br><em>Powered by AI</em></h2><p>Nexon AI transforms complex energy signals into confident decisions, so teams can move from reacting to anticipating.</p></div><ul><li>Intelligent energy analysis</li><li>Predictive insights</li><li>Automated anomaly identification</li><li>Scenario simulation</li><li>Optimization recommendations</li><li>Data-driven decision support</li></ul></section>
+
+      <section class="landing-energy-section landing-section"><div class="landing-section-heading centered"><span class="landing-kicker">RENEWABLE BY DESIGN</span><h2>Built for the full <em>energy picture</em></h2></div><div class="landing-energy-grid"><div><span>☀</span><h3>Solar Energy</h3><p>Understand generation at every interval.</p></div><div><span>♒</span><h3>Wind Energy</h3><p>Bring variable generation into focus.</p></div><div><span>⚡</span><h3>Energy Storage</h3><p>Make every stored unit count.</p></div><div><span>⌁</span><h3>Smart Distribution</h3><p>Balance energy where it matters.</p></div><div><span>⌁</span><h3>Predictive Analytics</h3><p>Plan ahead with greater clarity.</p></div></div></section>
+
+      <section class="landing-cta-section landing-section"><div class="landing-cta-orb"></div><span class="landing-kicker">MAKE THE NEXT MOVE</span><h2>Ready to Make<br><em>Energy Smarter?</em></h2><p>Explore the Nexon AI intelligence platform and turn renewable-energy data into actionable insights.</p><button class="landing-button landing-button-primary" data-launch-platform>Launch Nexon AI <span>→</span></button></section>
+    </main>
+    <footer class="landing-footer"><div><a class="landing-brand" href="#landingHome"><span class="landing-brand-mark">✦</span><span>NEXON <b>AI</b></span></a><p>AI-Powered Renewable Energy Intelligence</p></div><div class="landing-footer-links"><a href="#landingHome">Home</a><a href="#intelligence">Intelligence</a><a href="#features">Features</a><a href="#features">Platform</a><a href="#analytics">Analytics</a></div><span>SIH 2026 Prototype</span></footer>
+  </div>
+
   <!-- ==========================================================================
        1. WELCOME TO ECOGRID.AI (FIRST FRONT SCREEN)
        ========================================================================== -->
-  <div class="welcome-splash-overlay" id="welcomeSplashOverlay">
+  <div class="welcome-splash-overlay" id="welcomeSplashOverlay" style="display: none;">
     <div class="welcome-card">
       <div class="welcome-orb-logo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -1653,14 +1742,15 @@
   <div id="toast-container"></div>
 
   <!-- Scripts -->
-  <script src="js/simulationEngine.js"></script>
-  <script src="js/energyFlowVisualizer.js"></script>
-  <script src="js/predictionEngine.js"></script>
-  <script src="js/geminiIntelligence.js"></script>
-  <script src="js/optimizationEngine.js"></script>
-  <script src="js/anomalyDetector.js"></script>
-  <script src="js/analyticsReports.js"></script>
-  <script src="js/app.js"></script>
+  <script src="simulationEngine.js"></script>
+  <script src="energyFlowVisualizer.js"></script>
+  <script src="predictionEngine.js"></script>
+  <script src="geminiIntelligence.js"></script>
+  <script src="optimizationEngine.js"></script>
+  <script src="anomalyDetector.js"></script>
+  <script src="analyticsReports.js"></script>
+  <script src="app.js"></script>
+  <script src="landing.js"></script>
 </body>
 
 </html>

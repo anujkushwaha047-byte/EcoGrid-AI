@@ -2235,6 +2235,328 @@ canvas {
   #sidebar, #top-header, .tour-banner, .btn-primary, .btn-secondary, .theme-toggle-btn, .header-right {
     display: none !important;
   }
+}
+
+  /* Responsive dashboard layout overrides.
+     These preserve the existing dashboard DOM and controls while allowing
+     flex/grid children to shrink instead of expanding the document width. */
+  #main-wrapper,
+  #content-container,
+  .view-section,
+  .card-glass,
+  .dashboard-charts-row,
+  .dashboard-grid-2col,
+  .kpi-grid {
+    min-width: 0;
+  }
+
+  #top-header {
+    min-width: 0;
+  }
+
+  .header-left,
+  .header-right {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .header-left .campus-select-wrapper {
+    min-width: 0;
+  }
+
+  .header-left select {
+    min-width: 0;
+    max-width: clamp(130px, 15vw, 250px);
+    text-overflow: ellipsis;
+  }
+
+  .header-right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .btn-header,
+  .role-pill,
+  .user-profile-badge {
+    min-width: 0;
+  }
+
+  .btn-header span:last-child,
+  .user-profile-badge > div {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dashboard-charts-row > *,
+  .dashboard-grid-2col > *,
+  .kpi-grid > * {
+    min-width: 0;
+  }
+
+  .chart-header-row > *,
+  .flow-header > *,
+  .kpi-header > *,
+  .kpi-value-row > *,
+  .load-bar-header > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .chart-legend-row,
+  .flow-legend {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1500px) {
+    #top-header {
+      height: auto;
+      min-height: var(--header-height);
+      padding-top: 10px;
+      padding-bottom: 10px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+    }
+
+    .header-left,
+    .header-right {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+
+    .header-left {
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-right {
+      justify-content: flex-start;
+      gap: 8px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    :root {
+      --sidebar-width: 240px;
+    }
+
+    #content-container {
+      padding: 24px 22px 48px;
+    }
+
+    .card-glass {
+      padding: 18px;
+    }
+
+    .kpi-grid {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .dashboard-charts-row,
+    .dashboard-grid-2col {
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    :root {
+      --sidebar-width: 220px;
+    }
+
+    .brand-header {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .nav-item {
+      gap: 9px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 0.82rem;
+    }
+
+    .sidebar-footer {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    #top-header {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .campus-select-wrapper {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .kpi-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mix-breakdown-grid {
+      grid-template-columns: minmax(130px, 0.9fr) minmax(0, 1.1fr);
+      gap: 12px;
+    }
+
+    .load-bar-header {
+      flex-wrap: wrap;
+      gap: 3px 8px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --sidebar-width: 68px;
+    }
+
+    #sidebar {
+      width: var(--sidebar-width);
+    }
+
+    .brand-header {
+      justify-content: center;
+      padding: 14px 8px;
+    }
+
+    .brand-header > div:last-child,
+    .nav-section-title,
+    .nav-item span:not(.nav-badge),
+    .sidebar-footer {
+      display: none;
+    }
+
+    .nav-menu {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    .nav-item {
+      justify-content: center;
+      padding: 11px 8px;
+    }
+
+    .nav-item svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav-badge {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      margin-left: 0;
+      padding: 1px 4px;
+      font-size: 0.58rem;
+    }
+
+    #content-container {
+      padding: 18px 14px 38px;
+    }
+
+    #top-header {
+      padding: 9px 14px;
+    }
+
+    .header-left,
+    .header-right {
+      gap: 7px;
+    }
+
+    .header-left .campus-select-wrapper {
+      flex: 1 1 170px;
+    }
+
+    .header-left .live-telemetry-pill {
+      flex: 1 1 180px;
+      justify-content: center;
+    }
+
+    .header-right {
+      justify-content: flex-start;
+    }
+
+    .btn-header {
+      padding: 7px 10px;
+      font-size: 0.76rem;
+    }
+
+    .kpi-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-card {
+      padding: 15px;
+    }
+
+    .kpi-title {
+      font-size: 0.7rem;
+    }
+
+    .kpi-value {
+      font-size: 1.55rem;
+    }
+
+    .dashboard-charts-row,
+    .dashboard-grid-2col {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mix-breakdown-grid {
+      grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1.2fr);
+    }
+
+    .chart-legend-row,
+    .flow-legend {
+      gap: 6px;
+      font-size: 0.68rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-left .campus-select-wrapper,
+    .header-left .live-telemetry-pill {
+      flex-basis: 100%;
+    }
+
+    .header-left select {
+      max-width: none;
+      width: 100%;
+    }
+
+    .header-right .btn-header span:last-child {
+      display: none;
+    }
+
+    .role-pill {
+      padding: 6px 8px;
+    }
+
+    .role-pill span {
+      display: none;
+    }
+
+    .user-profile-badge > div {
+      display: none;
+    }
+
+    .kpi-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mix-breakdown-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .donut-canvas-wrapper {
+      width: 140px;
+      height: 140px;
+    }
+  }
+@media print {
   #main-wrapper {
     margin-left: 0 !important;
   }

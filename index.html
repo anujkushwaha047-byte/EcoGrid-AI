@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoGrid AI - AI-Powered Renewable & Sustainable Energy Management Platform | SIH 2026</title>
+  <meta name="description"
+    content="EcoGrid AI is an enterprise renewable energy management platform combining virtual IoT simulation, 24h predictive forecasting, Gemini Flash AI intelligence, and automated load optimization for SIH 2026 Problem Statement 26200.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       1. WELCOME TO ECOGRID.AI (FIRST FRONT SCREEN)
+       ========================================================================== -->
+  <div class="welcome-splash-overlay" id="welcomeSplashOverlay">
+    <div class="welcome-card">
+      <div class="welcome-orb-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
+
+      <div class="sih-badge-tag" style="font-size: 0.82rem; padding: 4px 12px; margin-bottom: 12px;">
+        SIH 2026 • AICTE PROBLEM STATEMENT 26200
+      </div>
+
+      <h1 class="welcome-title-animated">
+        Welcome to EcoGrid.AI
+      </h1>
+
+      <p class="welcome-subtitle">
+        AI-Powered Renewable & Sustainable Energy Management Platform — Real-time Virtual IoT prediction, multi-building
+        solar microgrids, and Gemini Flash intelligence.
+      </p>
+
+      <div class="welcome-feature-tags">
+        <div class="welcome-tag">☀️ Virtual IoT Lab</div>
+        <div class="welcome-tag">⚡ Live Particle Energy Flow</div>
+        <div class="welcome-tag">📈 24h AI Prediction Engine</div>
+        <div class="welcome-tag">✨ Gemini Flash Intelligence</div>
+        <div class="welcome-tag">🎯 Actionable Load Optimization</div>
+        <div class="welcome-tag">🌿 ESG Carbon Scorecard</div>
+      </div>
+
+      <div class="welcome-cta-group">
+        <!-- SIH JUDGES DIRECT ACCESS (1-Click to Dashboard) -->
+        <button class="btn-launch-hero" id="welcomeJudgeDirectBtn"
+          style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);">
+          <span>🏆 SIH Judges / Direct Demo Access</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <!-- MANDATORY USER LOGIN -->
+        <button class="btn-primary" id="welcomeOpenLoginBtn" style="padding: 14px 28px; font-size: 1.05rem;">
+          <span>🔐 Login to Platform</span>
+        </button>
+      </div>
+
+      <div style="margin-top: 24px; font-size: 0.78rem; color: var(--text-dim);">
+        Direct 1-Click Dashboard Access available for <strong>SIH 2026 Jury</strong> • Login mandatory for campus staff
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. AUTHENTICATION & LOGIN PORTAL (MANDATORY FOR OTHER USERS)
+       ========================================================================== -->
+  <div class="auth-page-overlay dismissed" id="authPageOverlay" style="display: none;">
+    <div class="auth-card">
+
+      <!-- Brand Logo Header -->
+      <div class="auth-brand-header">
+        <div class="brand-logo" style="width: 48px; height: 48px; margin-bottom: 12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h2
+          style="font-size: 1.65rem; font-weight: 800; background: linear-gradient(135deg, #fff 30%, #34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          EcoGrid AI</h2>
+        <div
+          style="font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-top: 2px;">
+          User Authentication Portal
+        </div>
+      </div>
+
+      <!-- 1. LOGIN FORM VIEW -->
+      <form id="loginFormView" onsubmit="return false;">
+        <div class="auth-form-group">
+          <label for="loginEmail">Email / Username</label>
+          <div class="auth-input-wrapper">
+            <input type="text" id="loginEmail" class="auth-input" placeholder="admin@ecogrid.ai or username"
+              value="admin@aicte.gov.in" required>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label for="loginPassword">Password</label>
+          <div class="auth-input-wrapper">
+            <input type="password" id="loginPassword" class="auth-input" placeholder="••••••••" value="ecogrid2026"
+              required>
+            <!-- SEEN PASSWORD (EYE TOGGLE) -->
+            <button type="button" class="btn-toggle-password" id="toggleLoginPasswordBtn"
+              title="Show/Hide Password">👁️</button>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label for="loginRoleSelect">Account Role</label>
+          <select id="loginRoleSelect" class="auth-input" style="cursor: pointer; padding-right: 14px;">
+            <option value="admin">Administrator (Full Campus Control)</option>
+            <option value="manager">Energy Manager (Telemetry & Optimization)</option>
+            <option value="user">General User (View Insights & Scorecard)</option>
+          </select>
+        </div>
+
+        <div class="auth-row-options">
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="rememberMeCheck" checked style="accent-color: var(--emerald-green);">
+            <span>Remember Me</span>
+          </label>
+          <a class="auth-link" id="showForgotPasswordBtn">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-auth-submit" id="submitLoginBtn">
+          <span>Sign In to Dashboard</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <!-- INSTANT DEMO / JUDGE ACCESS (PRD Requirement) -->
+        <button type="button" class="btn-auth-demo" id="instantDemoBtn">
+          <span>🏆 SIH Judge Direct Access (Bypass Login)</span>
+        </button>
+
+        <div class="auth-toggle-footer">
+          Don't have an account? <a class="auth-link" id="showRegisterBtn">Create Account</a> | <a class="auth-link"
+            id="backToWelcomeFromLoginBtn">Back to Intro</a>
+        </div>
+      </form>
+
+      <!-- 2. CREATE ACCOUNT (SIGN UP) VIEW -->
+      <form id="registerFormView" style="display: none;" onsubmit="return false;">
+        <div class="auth-form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" class="auth-input" placeholder="Dr. Aarav Sharma" required
+            style="padding-right: 14px;">
+        </div>
+
+        <div class="auth-form-group">
+          <label for="regOrg">Campus / Organization</label>
+          <input type="text" id="regOrg" class="auth-input" placeholder="AICTE Green University" required
+            style="padding-right: 14px;">
+        </div>
+
+        <div class="auth-form-group">
+          <label for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" class="auth-input" placeholder="aarav@university.edu" required
+            style="padding-right: 14px;">
+        </div>
+
+        <div class="auth-form-group">
+          <label for="regPassword">Create Password</label>
+          <div class="auth-input-wrapper">
+            <input type="password" id="regPassword" class="auth-input" placeholder="At least 8 characters" required>
+            <!-- SEEN PASSWORD (EYE TOGGLE) -->
+            <button type="button" class="btn-toggle-password" id="toggleRegPasswordBtn"
+              title="Show/Hide Password">👁️</button>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label for="regRole">Role Designation</label>
+          <select id="regRole" class="auth-input" style="cursor: pointer; padding-right: 14px;">
+            <option value="admin">Administrator</option>
+            <option value="manager" selected>Energy Manager</option>
+            <option value="user">General User</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-auth-submit" id="submitRegisterBtn" style="margin-top: 10px;">
+          <span>Create EcoGrid Account</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div class="auth-toggle-footer">
+          Already registered? <a class="auth-link" id="showLoginFromRegBtn">Sign In</a>
+        </div>
+      </form>
+
+      <!-- 3. FORGOT PASSWORD VIEW -->
+      <form id="forgotPasswordFormView" style="display: none;" onsubmit="return false;">
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+          Enter your registered institutional email address. We'll send an authentication recovery link.
+        </p>
+
+        <div class="auth-form-group">
+          <label for="forgotEmail">Institutional Email</label>
+          <input type="email" id="forgotEmail" class="auth-input" placeholder="user@aicte.gov.in" required
+            style="padding-right: 14px;">
+        </div>
+
+        <button type="submit" class="btn-auth-submit" id="submitForgotBtn" style="margin-top: 10px;">
+          <span>Send Recovery Link</span>
+        </button>
+
+        <div class="auth-toggle-footer">
+          Remembered your password? <a class="auth-link" id="showLoginFromForgotBtn">Back to Sign In</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div id="app-container">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar">
+      <div class="brand-header">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">EcoGrid AI</div>
+          <div class="brand-subtitle">SIH 2026 • AICTE PS 26200</div>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <div class="nav-section-title">Core Operations</div>
+
+        <a class="nav-item active" data-tab="dashboard" id="navTabDashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Smart Dashboard</span>
+        </a>
+
+        <a class="nav-item" data-tab="simulator" id="navTabSimulator">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+            </path>
+          </svg>
+          <span>Virtual IoT Lab</span>
+          <span class="nav-badge info">Live</span>
+        </a>
+
+        <a class="nav-item" data-tab="predictions" id="navTabPredictions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          <span>AI Forecast & Curve</span>
+        </a>
+
+        <a class="nav-item" data-tab="optimization" id="navTabOptimization">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m10 15 5-3-5-3v6Z"></path>
+          </svg>
+          <span>Optimization Engine</span>
+          <span class="nav-badge" style="background: var(--emerald-green);">Active</span>
+        </a>
+
+        <a class="nav-item" data-tab="anomalies" id="navTabAnomalies">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span>Anomaly Detector</span>
+          <span class="nav-badge" id="navAlertBadge" style="display:none;">0</span>
+        </a>
+
+        <div class="nav-section-title">Campus & Assets</div>
+
+        <a class="nav-item" data-tab="campus" id="navTabCampus">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"></path>
+          </svg>
+          <span>Campus Buildings</span>
+        </a>
+
+        <a class="nav-item manager-only" data-tab="devices" id="navTabDevices">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+          <span>IoT Device Inventory</span>
+        </a>
+
+        <a class="nav-item" data-tab="sustainability" id="navTabSustainability">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+          </svg>
+          <span>ESG Sustainability</span>
+        </a>
+
+        <a class="nav-item" data-tab="roi" id="navTabRoi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          <span>Solar ROI Planner</span>
+        </a>
+
+        <a class="nav-item" data-tab="reports" id="navTabReports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span>Audit & Reports</span>
+        </a>
+
+        <div class="nav-section-title admin-only">Configuration</div>
+
+        <a class="nav-item admin-only" data-tab="settings" id="navTabSettings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+            </path>
+          </svg>
+          <span>Gemini & Tariffs</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="replayWelcomeBtn"
+          style="width: 100%; margin-bottom: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); color: #fff; padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>✨</span>
+          <span>Replay Welcome Intro</span>
+        </button>
+        <div class="sih-badge">
+          <span class="sih-badge-tag">SIH 2026</span>
+          <span style="font-weight: 600; color: #fff;">Org: AICTE | PS 26200</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div id="main-wrapper">
+
+      <!-- Top Header -->
+      <header id="top-header">
+        <div class="header-left">
+          <div class="campus-select-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <select id="campusSelect">
+              <option value="aicte-south">AICTE Green Campus (South Site)</option>
+              <option value="delhi-tech">Delhi Smart Innovation Hub</option>
+              <option value="pune-univ">Pune Regional College Cluster</option>
+            </select>
+          </div>
+
+          <div class="campus-select-wrapper building-selector">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="color: var(--solar-amber);">
+              <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"></path>
+            </svg>
+            <select id="buildingSelect">
+              <option value="bldg-academic-a">Academic Block A (150 kW Solar)</option>
+              <option value="bldg-hostel-b">Hostel Block B (80 kW Solar)</option>
+              <option value="bldg-library">Central Library (100 kW Solar)</option>
+              <option value="bldg-science">Science Wing (120 kW Solar)</option>
+            </select>
+          </div>
+
+          <div class="live-telemetry-pill">
+            <span class="pulse-dot"></span>
+            <span id="liveTimeDisplay">12:30 PM (Simulated)</span>
+            <span style="opacity: 0.4;">|</span>
+            <span id="gridFreqDisplay">50.02 Hz</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Voice Assistant Command Mic -->
+          <button class="voice-mic-btn" id="voiceMicBtn" title="Speak Voice Command (e.g. 'What is battery status?')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+          </button>
+
+          <!-- SIH Pitch Presentation Mode -->
+          <button class="btn-header" id="openPitchBtn" style="border-color: var(--emerald-green); color: #34d399;">
+            <span>📽️</span>
+            <span>SIH Pitch Deck</span>
+          </button>
+
+          <!-- SIH Judge Demo Tour Trigger -->
+          <button class="btn-header sih-demo-btn" id="startSihTourBtn">
+            <span>🏆</span>
+            <span>Judge Demo Walkthrough</span>
+          </button>
+
+          <!-- AI Copilot Button -->
+          <button class="btn-header ai-copilot-btn" id="openAiCopilotBtn">
+            <span>✨</span>
+            <span>Ask EcoGrid AI</span>
+          </button>
+
+          <!-- Role Selector -->
+          <div class="role-pill">
+            <span style="color: var(--text-dim);">Role:</span>
+            <select id="roleSelect">
+              <option value="admin">Administrator</option>
+              <option value="manager">Energy Manager</option>
+              <option value="user">General User</option>
+            </select>
+          </div>
+
+          <!-- User Profile & Logout -->
+          <div class="user-profile-badge" id="userProfileBadge">
+            <div class="user-avatar-circle" id="headerUserAvatar">A</div>
+            <div>
+              <div style="font-weight: 700; color: #fff; font-size: 0.8rem; line-height: 1;" id="headerUserName">Admin
+                AICTE</div>
+              <div style="font-size: 0.65rem; color: #34d399; font-weight: 600;" id="headerUserRole">Administrator</div>
+            </div>
+            <button class="btn-logout" id="headerLogoutBtn" title="Sign Out">Logout</button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme">☀️</button>
+        </div>
+      </header>
+
+      <!-- Main Content Container -->
+      <main id="content-container">
+
+        <!-- SIH Judge Guided Tour Banner -->
+        <div class="tour-banner" id="sihTourBanner" style="display: none;">
+          <div>
+            <div
+              style="font-weight: 800; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+              <span>🏆 SIH 2026 Problem 26200 Walkthrough</span>
+              <span class="sih-badge-tag" id="tourStepTitle">Step 1: Select Building Microgrid</span>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-main); margin-top: 4px;" id="tourStepDesc">
+              Select Academic Block A to inspect real-time solar capacity (150 kW) & lithium BESS storage.
+            </p>
+            <div class="tour-steps-row" style="margin-top: 10px;">
+              <div class="tour-step-pill current">1. Microgrid</div>
+              <div class="tour-step-pill">2. Virtual IoT</div>
+              <div class="tour-step-pill">3. Flow Dynamics</div>
+              <div class="tour-step-pill">4. AI Prediction</div>
+              <div class="tour-step-pill">5. Optimization</div>
+              <div class="tour-step-pill">6. Diagnostics</div>
+              <div class="tour-step-pill">7. Sustainability</div>
+            </div>
+          </div>
+          <div>
+            <button class="btn-primary" id="nextTourStepBtn" style="white-space: nowrap;">
+              Next Step ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 1: SMART DASHBOARD
+             ========================================== -->
+        <section class="view-section active" id="view-dashboard">
+
+          <!-- Top KPI Ribbon with Mini Sparklines -->
+          <div class="kpi-grid">
+            <div class="card-glass kpi-card solar">
+              <div class="kpi-header">
+                <span class="kpi-title">Solar Generation</span>
+                <div class="kpi-icon-wrap">☀️</div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiSolarVal">128.4</span>
+                <span class="kpi-unit">kW</span>
+              </div>
+              <div class="kpi-sparkline-wrap">
+                <canvas id="sparkSolar" class="kpi-sparkline-canvas"></canvas>
+              </div>
+              <div class="kpi-subtext">
+                <span class="kpi-badge positive">Peak: 145 kW</span>
+                <span>Irradiance: 850 W/m²</span>
+              </div>
+            </div>
+
+            <div class="card-glass kpi-card consumption">
+              <div class="kpi-header">
+                <span class="kpi-title">Active Consumption</span>
+                <div class="kpi-icon-wrap">⚡</div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiConsumptionVal">76.2</span>
+                <span class="kpi-unit">kW</span>
+              </div>
+              <div class="kpi-sparkline-wrap">
+                <canvas id="sparkDemand" class="kpi-sparkline-canvas"></canvas>
+              </div>
+              <div class="kpi-subtext">
+                <span class="kpi-badge neutral">Baseline: 45 kW</span>
+                <span>Occupancy: 75%</span>
+              </div>
+            </div>
+
+            <div class="card-glass kpi-card battery">
+              <div class="kpi-header">
+                <span class="kpi-title">BESS Battery Storage</span>
+                <div class="kpi-icon-wrap">🔋</div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiBatteryVal">68%</span>
+                <span class="kpi-unit">SoC</span>
+              </div>
+              <div class="kpi-sparkline-wrap">
+                <canvas id="sparkBattery" class="kpi-sparkline-canvas"></canvas>
+              </div>
+              <div class="kpi-subtext" id="kpiBatterySub">
+                Charging (-24.5 kW)
+              </div>
+            </div>
+
+            <div class="card-glass kpi-card grid">
+              <div class="kpi-header">
+                <span class="kpi-title">Utility Grid Exchange</span>
+                <div class="kpi-icon-wrap">🌐</div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiGridVal" style="color: var(--emerald-green);">27.7 kW (Export)</span>
+              </div>
+              <div class="kpi-sparkline-wrap">
+                <canvas id="sparkGrid" class="kpi-sparkline-canvas"></canvas>
+              </div>
+              <div class="kpi-subtext">
+                <span class="kpi-badge positive">Net Metering Active</span>
+              </div>
+            </div>
+
+            <div class="card-glass kpi-card utilization">
+              <div class="kpi-header">
+                <span class="kpi-title">Renewable Utilization</span>
+                <div class="kpi-icon-wrap">🌿</div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiUtilVal">100%</span>
+              </div>
+              <div class="kpi-sparkline-wrap">
+                <canvas id="sparkUtil" class="kpi-sparkline-canvas"></canvas>
+              </div>
+              <div class="kpi-subtext">
+                <span class="kpi-badge positive">Zero Grid Import</span>
+              </div>
+            </div>
+
+            <div class="card-glass kpi-card financial">
+              <div class="kpi-header">
+                <span class="kpi-title">Savings & CO₂ Today</span>
+                <div class="kpi-icon-wrap">💰</div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiSavingsVal">₹ 4,820</span>
+              </div>
+              <div class="kpi-sparkline-wrap">
+                <canvas id="sparkFinance" class="kpi-sparkline-canvas"></canvas>
+              </div>
+              <div class="kpi-subtext">
+                <span class="kpi-badge positive" id="kpiCo2Val">118.5 kg CO₂</span>
+                <span>Avoided</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Power Generation vs Demand Analytics & Energy Mix Row -->
+          <div class="dashboard-charts-row">
+
+            <!-- Live Area Chart -->
+            <div class="card-glass" style="display: flex; flex-direction: column;">
+              <div class="chart-header-row">
+                <div>
+                  <h3 style="font-size: 1.15rem;">Live Microgrid Dynamics (Generation vs Demand)</h3>
+                  <p style="font-size: 0.8rem; color: var(--text-muted);">Diurnal solar irradiation curve overlaid with
+                    campus sub-load telemetry & battery dispatch</p>
+                </div>
+                <div class="chart-legend-row">
+                  <div class="chart-legend-pill"><span class="legend-dot"
+                      style="background: var(--solar-amber);"></span> <span>Solar PV (kW)</span></div>
+                  <div class="chart-legend-pill"><span class="legend-dot" style="background: #fb7185;"></span>
+                    <span>Campus Load (kW)</span></div>
+                  <div class="chart-legend-pill"><span class="legend-dot"
+                      style="background: var(--battery-cyan);"></span> <span>BESS Flow (kW)</span></div>
+                </div>
+              </div>
+
+              <div class="live-area-canvas-wrapper">
+                <canvas id="homeLiveAreaCanvas"></canvas>
+              </div>
+            </div>
+
+            <!-- Energy Mix Donut & Sub-load Breakdown -->
+            <div class="card-glass" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="chart-header-row" style="margin-bottom: 8px;">
+                <h3 style="font-size: 1.1rem;">Energy Mix & Load Share</h3>
+                <span class="status-badge online" style="font-size: 0.7rem;">Real-Time</span>
+              </div>
+
+              <div class="mix-breakdown-grid">
+
+                <!-- Donut Ring -->
+                <div class="donut-canvas-wrapper">
+                  <canvas id="homeEnergyMixCanvas"></canvas>
+                  <div class="donut-center-text">
+                    <div class="donut-center-val" id="donutCleanPct">86%</div>
+                    <div class="donut-center-lbl">Clean Index</div>
+                  </div>
+                </div>
+
+                <!-- Sub-load Progress Bars -->
+                <div class="load-bars-list">
+                  <div class="load-bar-item">
+                    <div class="load-bar-header">
+                      <span>❄️ HVAC Chillers</span>
+                      <span id="barHvacVal" style="color: #fff;">40 kW (48%)</span>
+                    </div>
+                    <div class="load-bar-track">
+                      <div class="load-bar-fill" id="barHvacFill" style="width: 48%; background: #38bdf8;"></div>
+                    </div>
+                  </div>
+
+                  <div class="load-bar-item">
+                    <div class="load-bar-header">
+                      <span>💧 Hydro Pumps</span>
+                      <span id="barPumpsVal" style="color: #fff;">25 kW (28%)</span>
+                    </div>
+                    <div class="load-bar-track">
+                      <div class="load-bar-fill" id="barPumpsFill" style="width: 28%; background: #06b6d4;"></div>
+                    </div>
+                  </div>
+
+                  <div class="load-bar-item">
+                    <div class="load-bar-header">
+                      <span>🚗 EV Fast Chargers</span>
+                      <span id="barEvVal" style="color: #fff;">35 kW (18%)</span>
+                    </div>
+                    <div class="load-bar-track">
+                      <div class="load-bar-fill" id="barEvFill" style="width: 18%; background: var(--emerald-green);">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="load-bar-item">
+                    <div class="load-bar-header">
+                      <span>🔬 Cleanroom & Labs</span>
+                      <span id="barLabsVal" style="color: #fff;">15 kW (6%)</span>
+                    </div>
+                    <div class="load-bar-track">
+                      <div class="load-bar-fill" id="barLabsFill" style="width: 6%; background: var(--solar-amber);">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div
+                style="font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 10px; border-top: 1px solid var(--border-glass); padding-top: 8px;">
+                ● Solar Self-Consumption: <strong style="color: var(--solar-amber);">68%</strong> | ● Battery Clean
+                Discharge: <strong style="color: var(--battery-cyan);">18%</strong> | ● Grid: <strong
+                  style="color: var(--grid-purple);">14%</strong>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Dashboard Core: Energy Flow Visualizer + Gemini AI Reasoning -->
+          <div class="dashboard-grid-2col">
+
+            <!-- Live Canvas Energy Flow Visualizer -->
+            <div class="card-glass energy-flow-container">
+              <div class="flow-header">
+                <div>
+                  <h3 style="font-size: 1.2rem;">Live Microgrid Energy Flow</h3>
+                  <p style="font-size: 0.82rem; color: var(--text-muted);">Real-time power exchange between generation,
+                    storage, load, and grid</p>
+                </div>
+                <div class="flow-legend">
+                  <div class="legend-item"><span class="legend-dot" style="background: var(--solar-amber);"></span>
+                    Solar PV</div>
+                  <div class="legend-item"><span class="legend-dot" style="background: var(--battery-cyan);"></span>
+                    BESS Battery</div>
+                  <div class="legend-item"><span class="legend-dot" style="background: #fb7185;"></span> Building Load
+                  </div>
+                  <div class="legend-item"><span class="legend-dot" style="background: var(--grid-purple);"></span>
+                    Utility Grid</div>
+                </div>
+              </div>
+
+              <div class="canvas-wrapper">
+                <canvas id="energyFlowCanvas"></canvas>
+              </div>
+            </div>
+
+            <!-- Gemini Flash AI Live Reasoning Panel -->
+            <div class="card-glass ai-reasoning-panel">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div class="ai-header-badge">
+                  <span>⚡</span>
+                  <span>Gemini Flash Intelligence</span>
+                </div>
+                <span style="font-size: 0.72rem; color: var(--text-dim);">Live Multi-Sensor Synthesis</span>
+              </div>
+
+              <div class="ai-insight-box" id="dashboardAiInsight">
+                High renewable availability observed during afternoon solar peak. Battery is actively storing clean
+                power (current SoC: 68%). Consider scheduling flexible high-energy operations such as central hydro
+                pumps during this window.
+              </div>
+
+              <div style="margin-top: 4px;">
+                <div
+                  style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">
+                  Quick Recommended Actions
+                </div>
+                <div class="recommendations-preview" id="dashboardQuickRecs">
+                  <div class="rec-mini-card">
+                    <div class="rec-mini-title">
+                      <span>Shift Water Pumps to 1:00 PM</span>
+                      <span class="sih-badge-tag">Load Shift</span>
+                    </div>
+                    <div class="rec-mini-benefit">⚡ Saves 35 kWh/cycle • ₹ 297.50 tariff reduction</div>
+                  </div>
+                  <div class="rec-mini-card" style="border-left-color: var(--battery-cyan);">
+                    <div class="rec-mini-title">
+                      <span>Pre-Charge BESS for Evening Peak</span>
+                      <span class="sih-badge-tag" style="background: var(--battery-cyan);">Arbitrage</span>
+                    </div>
+                    <div class="rec-mini-benefit">🔋 Shaves 40 kW evening grid draw at ₹8.50/kWh</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             TAB 2: VIRTUAL IOT SIMULATOR LAB
+             ========================================== -->
+        <section class="view-section" id="view-simulator">
+          <div class="view-header">
+            <div>
+              <h2><span>🎛️</span> Virtual IoT Simulation Lab</h2>
+              <p>Control environmental physics, irradiance, occupancy loads, and inspect raw structured IoT sensor
+                packets in real time.</p>
+            </div>
+            <div class="sim-actions-bar">
+              <button class="btn-primary" id="playPauseBtn">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+                Pause Simulation
+              </button>
+            </div>
+          </div>
+
+          <div class="sim-grid">
+
+            <!-- Simulator Physical Controls Panel -->
+            <div class="card-glass sim-controls-panel">
+              <h3 style="font-size: 1.15rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;">
+                Physics & Environmental Controls
+              </h3>
+
+              <!-- Time of Day Slider -->
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Simulated Time of Day</span>
+                  <span class="control-val" id="timeVal">12:30 PM</span>
+                </div>
+                <input type="range" class="slider-custom" id="timeSlider" min="0" max="23.99" step="0.25" value="12.5">
+                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim);">
+                  <span>12:00 AM (Night)</span>
+                  <span>12:00 PM (Solar Peak)</span>
+                  <span>11:59 PM</span>
+                </div>
+              </div>
+
+              <!-- Weather Presets -->
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Weather & Atmospheric Conditions</span>
+                </div>
+                <div class="weather-presets">
+                  <button class="preset-btn active" data-weather="sunny">☀️ Sunny Peak</button>
+                  <button class="preset-btn" data-weather="partly-cloudy">⛅ Partly Cloudy</button>
+                  <button class="preset-btn" data-weather="overcast">☁️ Overcast</button>
+                  <button class="preset-btn" data-weather="rainy">🌧️ Rainy</button>
+                  <button class="preset-btn" data-weather="heatwave">🔥 Heatwave 42°C</button>
+                </div>
+              </div>
+
+              <!-- Cloud Cover % Slider -->
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Cloud Cover & Shading</span>
+                  <span class="control-val" id="cloudVal">10%</span>
+                </div>
+                <input type="range" class="slider-custom" id="cloudSlider" min="0" max="100" step="5" value="10">
+              </div>
+
+              <!-- Building Occupancy Slider -->
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Building Occupancy Load</span>
+                  <span class="control-val" id="occupancyVal">75%</span>
+                </div>
+                <input type="range" class="slider-custom" id="occupancySlider" min="10" max="100" step="5" value="75">
+              </div>
+
+              <!-- Appliance Disaggregation & Flexible Sub-loads -->
+              <div class="control-group" style="border-top: 1px solid var(--border-glass); padding-top: 14px;">
+                <div class="control-label-row">
+                  <span style="font-weight: 700; color: #fff;">🔌 Sub-load & Appliance Controls</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+                  <label
+                    style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-tertiary); padding: 8px 12px; border-radius: var(--radius-sm); font-size: 0.82rem; cursor: pointer;">
+                    <span>💧 Central Hydro Water Pumps (25 kW)</span>
+                    <input type="checkbox" class="appliance-switch" data-load="waterPumps" data-name="Hydro Water Pumps"
+                      style="accent-color: var(--emerald-green); width: 16px; height: 16px;">
+                  </label>
+                  <label
+                    style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-tertiary); padding: 8px 12px; border-radius: var(--radius-sm); font-size: 0.82rem; cursor: pointer;">
+                    <span>❄️ Central HVAC Chiller Array (40 kW)</span>
+                    <input type="checkbox" class="appliance-switch" data-load="hvacChillers" data-name="HVAC Chillers"
+                      checked style="accent-color: var(--emerald-green); width: 16px; height: 16px;">
+                  </label>
+                  <label
+                    style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-tertiary); padding: 8px 12px; border-radius: var(--radius-sm); font-size: 0.82rem; cursor: pointer;">
+                    <span>⚡ Campus EV Bus Fast Chargers (35 kW)</span>
+                    <input type="checkbox" class="appliance-switch" data-load="evFleet" data-name="EV Bus Station"
+                      style="accent-color: var(--emerald-green); width: 16px; height: 16px;">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Simulation Speed -->
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Simulation Clock Speed</span>
+                </div>
+                <select id="speedSelect"
+                  style="background: var(--bg-tertiary); color: #fff; border: 1px solid var(--border-glass); padding: 8px 12px; border-radius: var(--radius-sm); font-weight: 600;">
+                  <option value="1">1x (Real-time)</option>
+                  <option value="5" selected>5x (Accelerated)</option>
+                  <option value="15">15x (Fast Day Cycle)</option>
+                  <option value="60">60x (Full Day in 2 Mins)</option>
+                </select>
+              </div>
+
+              <!-- Fault / Anomaly Injection for Evaluation -->
+              <div class="control-group" style="border-top: 1px solid var(--border-glass); padding-top: 14px;">
+                <div class="control-label-row">
+                  <span style="color: var(--solar-amber);">SIH Evaluation: Fault Injection</span>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="btn-secondary" id="injectSoilingBtn" style="font-size: 0.78rem;">Dust Soiling
+                    (-55%)</button>
+                  <button class="btn-secondary" id="injectLoadSurgeBtn" style="font-size: 0.78rem;">HVAC Load Spike
+                    (+65%)</button>
+                  <button class="btn-secondary" id="clearAnomalyBtn"
+                    style="font-size: 0.78rem; border-color: var(--emerald-green); color: #34d399;">Clear
+                    Faults</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Live Structured IoT Telemetry Console (PRD Section 21) -->
+            <div class="telemetry-stream-panel">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="terminal-dot red"></span>
+                  <span class="terminal-dot yellow"></span>
+                  <span class="terminal-dot green"></span>
+                </div>
+                <div class="terminal-title">VIRTUAL IoT SENSOR DATA PIPELINE • JSON PACKET STREAM</div>
+                <span class="live-telemetry-pill" style="padding: 2px 8px; font-size: 0.7rem;">STREAMING</span>
+              </div>
+              <div class="terminal-body" id="telemetryTerminalBody">
+                <!-- Dynamically populated packet stream -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 3: AI PREDICTION & FORECASTING
+             ========================================== -->
+        <section class="view-section" id="view-predictions">
+          <div class="view-header">
+            <div>
+              <h2><span>📈</span> AI Prediction & Multi-Horizon Forecast Engine</h2>
+              <p>Next 24-hour predictive curves for solar PV yield, demand peaks, battery SoC trajectories, and optimal
+                renewable dispatch windows.</p>
+            </div>
+            <div class="time-range-pills">
+              <button class="pill-btn active">24-Hour Horizon</button>
+              <button class="pill-btn">7-Day Outlook</button>
+              <button class="pill-btn">Seasonal Profile</button>
+            </div>
+          </div>
+
+          <div class="forecast-grid">
+
+            <!-- Canvas Forecast Chart -->
+            <div class="card-glass chart-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 style="font-size: 1.1rem;">24-Hour Solar PV & Demand Prediction (Confidence Bands)</h3>
+                <div style="display: flex; gap: 14px; font-size: 0.75rem; font-weight: 600;">
+                  <span style="color: var(--solar-amber);">■ Solar Forecast</span>
+                  <span style="color: #fb7185;">■ Expected Demand</span>
+                  <span style="color: var(--battery-cyan);">▪▪ Battery SoC %</span>
+                </div>
+              </div>
+
+              <div class="chart-canvas-wrapper">
+                <canvas id="forecastChartCanvas"></canvas>
+              </div>
+            </div>
+
+            <!-- Predicted Availability Windows (PRD Section 9) -->
+            <div class="card-glass window-indicator-card">
+              <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 8px;">
+                Identified Energy Windows
+              </h3>
+              <div id="predictiveWindowsContainer" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Populated by predictionEngine.js -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 4: ACTIONABLE OPTIMIZATIONS
+             ========================================== -->
+        <section class="view-section" id="view-optimization">
+          <div class="view-header">
+            <div>
+              <h2><span>🎯</span> Actionable Energy Optimization Engine</h2>
+              <p>Transforms raw telemetry into structured Problem ➔ Recommended Action ➔ Expected Benefit optimizations
+                with 1-click execution.</p>
+            </div>
+          </div>
+
+          <div class="optimizations-grid" id="optimizationsGridContainer">
+            <!-- Dynamically populated optimization cards -->
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5: ANOMALY DETECTION
+             ========================================== -->
+        <section class="view-section" id="view-anomalies">
+          <div class="view-header">
+            <div>
+              <h2><span>⚠️</span> Real-Time Anomaly Detection & Diagnostics</h2>
+              <p>Continuous statistical baseline monitoring, deviation alerts, and diagnostic hypotheses.</p>
+            </div>
+          </div>
+
+          <div class="anomalies-list" id="anomaliesListContainer">
+            <!-- Dynamically populated anomalies list -->
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 6: MULTI-BUILDING CAMPUS MATRIX
+             ========================================== -->
+        <section class="view-section" id="view-campus">
+          <div class="view-header">
+            <div>
+              <h2><span>🏢</span> Multi-Building Campus Microgrids</h2>
+              <p>Manage, monitor, and compare decentralized renewable assets across university departments and
+                residential blocks.</p>
+            </div>
+          </div>
+
+          <div class="buildings-matrix" style="margin-bottom: 24px;">
+
+            <div class="card-glass building-card active-building" data-building="bldg-academic-a">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 style="font-size: 1.1rem;">Academic Block A</h3>
+                <span class="status-badge online">Active Node</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Classrooms & Research Laboratories • 45,000 sq.ft
+              </p>
+              <div class="building-meta-grid">
+                <div class="building-meta-item"><span class="lbl">Solar Array</span><span class="val"
+                    style="color: var(--solar-amber);">150 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">BESS Unit</span><span class="val"
+                    style="color: var(--battery-cyan);">200 kWh</span></div>
+                <div class="building-meta-item"><span class="lbl">Peak Load</span><span class="val">140 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">Health Score</span><span class="val"
+                    style="color: #34d399;">98%</span></div>
+              </div>
+            </div>
+
+            <div class="card-glass building-card" data-building="bldg-hostel-b">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 style="font-size: 1.1rem;">Hostel Block B</h3>
+                <span class="status-badge online">Active Node</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Residential Dormitories & Mess • 38,000 sq.ft</p>
+              <div class="building-meta-grid">
+                <div class="building-meta-item"><span class="lbl">Solar Array</span><span class="val"
+                    style="color: var(--solar-amber);">80 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">BESS Unit</span><span class="val"
+                    style="color: var(--battery-cyan);">120 kWh</span></div>
+                <div class="building-meta-item"><span class="lbl">Peak Load</span><span class="val">95 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">Health Score</span><span class="val"
+                    style="color: #34d399;">96%</span></div>
+              </div>
+            </div>
+
+            <div class="card-glass building-card" data-building="bldg-library">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 style="font-size: 1.1rem;">Central Library</h3>
+                <span class="status-badge online">Active Node</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Knowledge Hub & Server Datacenter • 30,000 sq.ft
+              </p>
+              <div class="building-meta-grid">
+                <div class="building-meta-item"><span class="lbl">Solar Array</span><span class="val"
+                    style="color: var(--solar-amber);">100 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">BESS Unit</span><span class="val"
+                    style="color: var(--battery-cyan);">150 kWh</span></div>
+                <div class="building-meta-item"><span class="lbl">Peak Load</span><span class="val">75 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">Health Score</span><span class="val"
+                    style="color: #34d399;">99%</span></div>
+              </div>
+            </div>
+
+            <div class="card-glass building-card" data-building="bldg-science">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 style="font-size: 1.1rem;">Science & Tech Wing</h3>
+                <span class="status-badge online">Active Node</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Cleanrooms & Heavy Analytical Gear • 52,000 sq.ft
+              </p>
+              <div class="building-meta-grid">
+                <div class="building-meta-item"><span class="lbl">Solar Array</span><span class="val"
+                    style="color: var(--solar-amber);">120 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">BESS Unit</span><span class="val"
+                    style="color: var(--battery-cyan);">180 kWh</span></div>
+                <div class="building-meta-item"><span class="lbl">Peak Load</span><span class="val">160 kW</span></div>
+                <div class="building-meta-item"><span class="lbl">Health Score</span><span class="val"
+                    style="color: #34d399;">97%</span></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Comparative Campus Capacity Chart -->
+          <div class="card-glass">
+            <h3 style="font-size: 1.1rem; margin-bottom: 14px;">Campus Building Comparison (Solar Capacity vs Peak
+              Demand)</h3>
+            <div style="height: 280px; position: relative;">
+              <canvas id="buildingCompCanvas"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 7: IOT DEVICE MANAGEMENT
+             ========================================== -->
+        <section class="view-section" id="view-devices">
+          <div class="view-header">
+            <div>
+              <h2><span>📡</span> IoT Device & Sensor Management</h2>
+              <p>Live inventory of smart meters, hybrid inverters, battery BMS units, pyranometers, and sub-meters.</p>
+            </div>
+            <button class="btn-primary admin-only"
+              onclick="window.showToast('Device commissioning modal initialized', 'info')">+ Register New
+              Device</button>
+          </div>
+
+          <div class="card-glass table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Device ID</th>
+                  <th>Device Name</th>
+                  <th>Building Scope</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Last Reading</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>DEV-AC-INV-01</code></td>
+                  <td><strong>Rooftop Solar Inverter 1</strong></td>
+                  <td>Academic Block A</td>
+                  <td>Solar Inverter</td>
+                  <td><span class="status-badge online">ONLINE</span></td>
+                  <td>128.4 kW @ 230V</td>
+                  <td><button class="btn-secondary" style="padding: 4px 10px; font-size: 0.76rem;"
+                      onclick="window.showToast('Telemetry diagnostics opened', 'info')">Calibrate</button></td>
+                </tr>
+                <tr>
+                  <td><code>DEV-AC-BMS-01</code></td>
+                  <td><strong>Lithium BESS BMS Controller</strong></td>
+                  <td>Academic Block A</td>
+                  <td>Battery BMS</td>
+                  <td><span class="status-badge online">ONLINE</span></td>
+                  <td>68% SoC (24.5 kW)</td>
+                  <td><button class="btn-secondary" style="padding: 4px 10px; font-size: 0.76rem;"
+                      onclick="window.showToast('Telemetry diagnostics opened', 'info')">Calibrate</button></td>
+                </tr>
+                <tr>
+                  <td><code>DEV-AC-MTR-01</code></td>
+                  <td><strong>Main Smart Energy Meter</strong></td>
+                  <td>Academic Block A</td>
+                  <td>Smart Meter</td>
+                  <td><span class="status-badge online">ONLINE</span></td>
+                  <td>76.2 kW • 50.02 Hz</td>
+                  <td><button class="btn-secondary" style="padding: 4px 10px; font-size: 0.76rem;"
+                      onclick="window.showToast('Telemetry diagnostics opened', 'info')">Calibrate</button></td>
+                </tr>
+                <tr>
+                  <td><code>DEV-HB-INV-01</code></td>
+                  <td><strong>Hostel B Solar Inverter</strong></td>
+                  <td>Hostel Block B</td>
+                  <td>Solar Inverter</td>
+                  <td><span class="status-badge online">ONLINE</span></td>
+                  <td>64.2 kW @ 230V</td>
+                  <td><button class="btn-secondary" style="padding: 4px 10px; font-size: 0.76rem;"
+                      onclick="window.showToast('Telemetry diagnostics opened', 'info')">Calibrate</button></td>
+                </tr>
+                <tr>
+                  <td><code>DEV-SCI-INV-01</code></td>
+                  <td><strong>Cleanroom Solar Array Inverter</strong></td>
+                  <td>Science Wing</td>
+                  <td>Solar Inverter</td>
+                  <td><span class="status-badge online">ONLINE</span></td>
+                  <td>96.5 kW @ 230V</td>
+                  <td><button class="btn-secondary" style="padding: 4px 10px; font-size: 0.76rem;"
+                      onclick="window.showToast('Telemetry diagnostics opened', 'info')">Calibrate</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- EV Fleet & V2G Smart Charging Hub -->
+          <div class="card-glass" style="margin-top: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 1.15rem;">🚗 Smart EV Fleet & V2G (Vehicle-to-Grid) Hub</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Decentralized EV charging bays with
+                  solar-priority scheduling and bidirectional V2G support.</p>
+              </div>
+              <span class="status-badge online">4 BAYS SYNCHRONIZED</span>
+            </div>
+
+            <div class="ev-bays-grid">
+              <div class="ev-bay-card charging">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-weight: 700; color: #fff; font-size: 0.9rem;">Bay 1: Campus EV Bus</span>
+                  <span class="sih-badge-tag" style="background: var(--emerald-green); color: #000;">Charging 22
+                    kW</span>
+                </div>
+                <div class="ev-battery-bar">
+                  <div class="ev-battery-fill" style="width: 78%;"></div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted);">
+                  <span>Battery: <strong>78% SoC</strong></span>
+                  <span style="color: #34d399;">100% Solar Powered</span>
+                </div>
+              </div>
+
+              <div class="ev-bay-card v2g-active">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-weight: 700; color: #fff; font-size: 0.9rem;">Bay 2: Faculty Fleet #04</span>
+                  <span class="sih-badge-tag" style="background: var(--battery-cyan); color: #000;">V2G Active (10
+                    kW)</span>
+                </div>
+                <div class="ev-battery-bar">
+                  <div class="ev-battery-fill" style="width: 85%; background: var(--battery-cyan);"></div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted);">
+                  <span>Battery: <strong>85% SoC</strong></span>
+                  <span style="color: var(--battery-cyan);">Discharging to Grid</span>
+                </div>
+              </div>
+
+              <div class="ev-bay-card">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-weight: 700; color: #fff; font-size: 0.9rem;">Bay 3: Student 2-Wheelers</span>
+                  <span class="status-badge online" style="font-size: 0.7rem;">Idle Ready</span>
+                </div>
+                <div class="ev-battery-bar">
+                  <div class="ev-battery-fill" style="width: 95%;"></div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted);">
+                  <span>Battery: <strong>95% SoC</strong></span>
+                  <span>Standby</span>
+                </div>
+              </div>
+
+              <div class="ev-bay-card">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-weight: 700; color: #fff; font-size: 0.9rem;">Bay 4: Research Van</span>
+                  <span class="status-badge maintenance" style="font-size: 0.7rem;">Available</span>
+                </div>
+                <div class="ev-battery-bar">
+                  <div class="ev-battery-fill" style="width: 40%; background: #94a3b8;"></div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted);">
+                  <span>Plugged In</span>
+                  <span>Awaiting Peak Solar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 8: ESG SUSTAINABILITY DASHBOARD
+             ========================================== -->
+        <section class="view-section" id="view-sustainability">
+          <div class="view-header">
+            <div>
+              <h2><span>🌿</span> ESG Sustainability & Carbon Footprint Scorecard</h2>
+              <p>Track clean MWh generated, carbon offset metrics, coal displacement, and energy efficiency ratings.</p>
+            </div>
+          </div>
+
+          <div class="sustainability-hero-grid">
+            <div class="card-glass eco-stat-card">
+              <div class="eco-icon">☀️</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">DAILY CLEAN GENERATION</div>
+                <div style="font-size: 1.85rem; font-weight: 800; color: #fff;" id="ecoCleanMwh">0.81 MWh</div>
+                <div style="font-size: 0.75rem; color: #34d399;">100% On-Site Solar PV</div>
+              </div>
+            </div>
+
+            <div class="card-glass eco-stat-card">
+              <div class="eco-icon" style="background: linear-gradient(135deg, #06b6d4, #0284c7);">🌱</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">AVOIDED CO₂ FOOTPRINT</div>
+                <div style="font-size: 1.85rem; font-weight: 800; color: #fff;" id="ecoCo2Kg">664.2 kg</div>
+                <div style="font-size: 0.75rem; color: #38bdf8;">Factor: 0.82 kg CO₂/kWh</div>
+              </div>
+            </div>
+
+            <div class="card-glass eco-stat-card">
+              <div class="eco-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🌳</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">EQUIVALENT TREES PLANTED
+                </div>
+                <div style="font-size: 1.85rem; font-weight: 800; color: #fff;" id="ecoTrees">32 Trees</div>
+                <div style="font-size: 0.75rem; color: #fbbf24;">Displaced Coal: <span id="ecoCoal">278 kg</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-glass" style="margin-top: 20px;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 8px;">ESG Certification & Transparency Statement</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+              Environmental savings are calculated using the Central Electricity Authority (CEA) baseline carbon
+              emission factor for the regional grid (0.82 kg CO₂/kWh) compared against rooftop crystalline silicon
+              lifecycle emissions (0.04 kg CO₂/kWh). All calculations adhere to ISO 50001 Energy Management Standards.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 9: SOLAR ROI & EXPANSION PLANNER
+             ========================================== -->
+        <section class="view-section" id="view-roi">
+          <div class="view-header">
+            <div>
+              <h2><span>💰</span> Solar & Storage ROI Expansion Planner</h2>
+              <p>Model financial feasibility, Levelized Cost of Energy (LCOE), payback periods, and government subsidy
+                benefits.</p>
+            </div>
+          </div>
+
+          <div class="roi-calculator-grid">
+
+            <!-- Parameters Control Box -->
+            <div class="card-glass" style="display: flex; flex-direction: column; gap: 16px;">
+              <h3 style="font-size: 1.15rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;">
+                Expansion Feasibility Parameters
+              </h3>
+
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Proposed Additional Solar PV</span>
+                  <span class="control-val" id="roiSolarVal">50 kW</span>
+                </div>
+                <input type="range" class="slider-custom" id="roiSolarSlider" min="10" max="300" step="10" value="50">
+              </div>
+
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Proposed BESS Battery Storage</span>
+                  <span class="control-val" id="roiBatteryVal">60 kWh</span>
+                </div>
+                <input type="range" class="slider-custom" id="roiBatterySlider" min="0" max="200" step="10" value="60">
+              </div>
+
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span>Estimated Capital Cost (₹ / kW)</span>
+                  <span class="control-val" id="roiCostVal">₹ 42,000</span>
+                </div>
+                <input type="range" class="slider-custom" id="roiCostSlider" min="30000" max="60000" step="1000"
+                  value="42000">
+              </div>
+
+              <div class="control-group">
+                <label
+                  style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-tertiary); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer;">
+                  <span>Include AICTE / National Solar Subsidy (20%)</span>
+                  <input type="checkbox" id="roiSubsidyCheck" checked
+                    style="accent-color: var(--emerald-green); width: 18px; height: 18px;">
+                </label>
+              </div>
+
+              <button class="btn-primary" id="recalcRoiBtn"
+                style="width: 100%; justify-content: center; margin-top: 8px;">
+                ⚡ Recalculate Financial Model
+              </button>
+            </div>
+
+            <!-- Projected Financial Returns Box -->
+            <div class="card-glass" style="display: flex; flex-direction: column; gap: 16px;">
+              <h3 style="font-size: 1.15rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;">
+                Projected Return on Investment (ROI)
+              </h3>
+
+              <div class="roi-metrics-grid">
+                <div class="roi-metric-box highlight">
+                  <span class="lbl">Estimated Payback Period</span>
+                  <span class="val" id="roiPaybackVal" style="color: #34d399;">3.2 Years</span>
+                </div>
+                <div class="roi-metric-box highlight">
+                  <span class="lbl">10-Year Net Savings</span>
+                  <span class="val" id="roi10YearVal" style="color: var(--battery-cyan);">₹ 48.2 Lakhs</span>
+                </div>
+                <div class="roi-metric-box">
+                  <span class="lbl">Net Capital Expenditure (CapEx)</span>
+                  <span class="val" id="roiCapexVal">₹ 21.0 Lakhs</span>
+                </div>
+                <div class="roi-metric-box">
+                  <span class="lbl">Clean LCOE vs Grid</span>
+                  <span class="val" id="roiLcoeVal">₹ 2.85 <span style="font-size: 0.9rem; color: var(--text-dim);">vs ₹
+                      8.50</span></span>
+                </div>
+              </div>
+
+              <div
+                style="background: rgba(0, 0, 0, 0.2); padding: 14px; border-radius: var(--radius-sm); font-size: 0.84rem; color: var(--text-muted); line-height: 1.6;">
+                💡 <strong>AI Investment Recommendation:</strong> Adding a 50 kW rooftop expansion in <em>Academic Block
+                  A</em> reduces campus peak grid demand by 38% and avoids ~42 metric tons of CO₂ emissions annually.
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 10: AUDIT & EXPORTABLE REPORTS
+             ========================================== -->
+        <section class="view-section" id="view-reports">
+          <div class="view-header">
+            <div>
+              <h2><span>📊</span> Energy Audit & Exportable Reports</h2>
+              <p>Generate audit-ready energy summaries, download full CSV sensor telemetry, or print executive PDFs.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn-primary" id="exportCsvBtn">📥 Export Telemetry CSV</button>
+              <button class="btn-secondary" id="printReportBtn">🖨️ Print Audit Summary</button>
+            </div>
+          </div>
+
+          <div class="card-glass" style="margin-bottom: 24px;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 12px;">Executive Microgrid Audit Summary</h3>
+            <div
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; font-size: 0.9rem;">
+              <div style="background: var(--bg-tertiary); padding: 14px; border-radius: var(--radius-sm);">
+                <div style="color: var(--text-muted); font-size: 0.75rem;">AUDIT PERIOD</div>
+                <div style="font-weight: 700; color: #fff; margin-top: 4px;">Today (Rolling 24 Hours)</div>
+              </div>
+              <div style="background: var(--bg-tertiary); padding: 14px; border-radius: var(--radius-sm);">
+                <div style="color: var(--text-muted); font-size: 0.75rem;">TOTAL SOLAR GENERATED</div>
+                <div style="font-weight: 700; color: var(--solar-amber); margin-top: 4px;">812.4 kWh</div>
+              </div>
+              <div style="background: var(--bg-tertiary); padding: 14px; border-radius: var(--radius-sm);">
+                <div style="color: var(--text-muted); font-size: 0.75rem;">RENEWABLE SELF-CONSUMPTION</div>
+                <div style="font-weight: 700; color: #34d399; margin-top: 4px;">84.6%</div>
+              </div>
+              <div style="background: var(--bg-tertiary); padding: 14px; border-radius: var(--radius-sm);">
+                <div style="color: var(--text-muted); font-size: 0.75rem;">ESTIMATED NET SAVINGS</div>
+                <div style="font-weight: 700; color: #38bdf8; margin-top: 4px;">₹ 6,905.40</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-glass">
+            <h3 style="font-size: 1.1rem; margin-bottom: 14px;">Campus Energy Generation Matrix</h3>
+            <div style="height: 260px; position: relative;">
+              <canvas id="reportsCompCanvas"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 10: SETTINGS & GEMINI CONFIG
+             ========================================== -->
+        <section class="view-section admin-only" id="view-settings">
+          <div class="view-header">
+            <div>
+              <h2><span>⚙️</span> System Settings & Gemini Flash Integration</h2>
+              <p>Configure Google Gemini API keys, grid tariffs, net-metering rates, and emission coefficients.</p>
+            </div>
+          </div>
+
+          <div class="card-glass" style="max-width: 650px;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 14px;">Google Gemini Flash API Integration</h3>
+            <div class="control-group">
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">
+                Gemini API Key (Optional — built-in expert reasoning works out-of-the-box)
+              </label>
+              <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy..."
+                style="background: var(--bg-tertiary); border: 1px solid var(--border-glass); color: #fff; padding: 10px 14px; border-radius: var(--radius-sm); outline: none; font-family: 'JetBrains Mono', monospace;">
+              <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 4px;">
+                Enter a Gemini API key to activate live multi-turn natural language generative reasoning.
+              </p>
+              <button class="btn-primary" id="saveApiKeyBtn" style="margin-top: 10px; width: fit-content;">Save API
+                Configuration</button>
+            </div>
+
+            <h3
+              style="font-size: 1.15rem; margin-top: 24px; margin-bottom: 14px; border-top: 1px solid var(--border-glass); padding-top: 16px;">
+              Tariff & Grid Parameters
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="control-group">
+                <label style="font-size: 0.8rem; color: var(--text-muted);">Peak Grid Tariff (₹/kWh)</label>
+                <input type="number" value="8.50" step="0.1"
+                  style="background: var(--bg-tertiary); border: 1px solid var(--border-glass); color: #fff; padding: 8px 12px; border-radius: var(--radius-sm);">
+              </div>
+              <div class="control-group">
+                <label style="font-size: 0.8rem; color: var(--text-muted);">Net Metering Credit (₹/kWh)</label>
+                <input type="number" value="4.20" step="0.1"
+                  style="background: var(--bg-tertiary); border: 1px solid var(--border-glass); color: #fff; padding: 8px 12px; border-radius: var(--radius-sm);">
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Interactive Gemini AI Assistant Modal -->
+  <div class="modal-overlay" id="aiCopilotModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="brand-logo" style="width: 32px; height: 32px;">
+            <span style="font-size: 1.1rem;">✨</span>
+          </div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #fff;">Ask EcoGrid AI Intelligence</div>
+            <div style="font-size: 0.72rem; color: var(--emerald-green); font-weight: 600;">Powered by Gemini Flash •
+              Live Sensor Reasoning</div>
+          </div>
+        </div>
+        <button id="closeAiCopilotBtn"
+          style="background: transparent; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div class="modal-body" id="copilotChatMessages" style="height: 380px;">
+        <!-- Chat history dynamically rendered -->
+      </div>
+
+      <!-- Quick Prompt Chips -->
+      <div style="padding: 0 24px; display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px;">
+        <button class="pill-btn quick-prompt-btn" style="white-space: nowrap;">What is current battery status?</button>
+        <button class="pill-btn quick-prompt-btn" style="white-space: nowrap;">How can we maximize savings
+          today?</button>
+        <button class="pill-btn quick-prompt-btn" style="white-space: nowrap;">Explain water pump optimization</button>
+        <button class="pill-btn quick-prompt-btn" style="white-space: nowrap;">Calculate CO2 reduction</button>
+      </div>
+
+      <div class="modal-footer">
+        <input type="text" id="copilotChatInput"
+          placeholder="Ask anything about solar yield, battery arbitrage, or load scheduling..."
+          style="flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-glass); color: #fff; padding: 10px 14px; border-radius: var(--radius-sm); outline: none; font-size: 0.88rem;">
+        <button class="btn-primary" id="sendCopilotChatBtn">Send ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Node Telemetry Detail Modal -->
+  <div class="modal-overlay" id="nodeTelemetryModal">
+    <div class="modal-card" style="max-width: 620px;">
+      <div class="modal-header">
+        <div>
+          <div style="font-weight: 800; font-size: 1.15rem; color: #fff;" id="nodeModalTitle">Node Electrical Telemetry
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" id="nodeModalDesc">Granular
+            electrical diagnostics and phase telemetry</div>
+        </div>
+        <button id="closeNodeTelemetryBtn"
+          style="background: transparent; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="building-meta-grid" id="nodeModalGrid" style="grid-template-columns: repeat(2, 1fr); gap: 12px;">
+          <!-- Dynamically populated electrical metrics -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary"
+          onclick="document.getElementById('nodeTelemetryModal').classList.remove('active')">Close</button>
+        <button class="btn-primary" onclick="window.showToast('Diagnostic log exported to AICTE Ledger', 'success')">Log
+          Diagnostics</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Voice Assistant Status Pill -->
+  <div class="voice-status-pill" id="voiceStatusPill">
+    <span class="pulse-dot" style="background: #ef4444; box-shadow: 0 0 10px #ef4444;"></span>
+    <span id="voiceStatusText">Listening to voice command...</span>
+  </div>
+
+  <!-- Full-Screen SIH Pitch Deck & Demonstration Overlay -->
+  <div class="pitch-overlay" id="pitchOverlay">
+    <div class="pitch-container">
+
+      <!-- Slide 1: Title & Problem -->
+      <div class="pitch-slide active" data-slide="1">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div class="sih-badge-tag" style="font-size: 0.85rem; padding: 4px 10px;">SIH 2026 • Problem Statement: 26200
+          </div>
+          <button id="closePitchBtn"
+            style="background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">✕</button>
+        </div>
+        <h1
+          style="font-size: 2.8rem; line-height: 1.2; background: linear-gradient(135deg, #fff 30%, #34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          EcoGrid AI: Intelligent Renewable & Sustainable Energy Management
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+          Transforming campus energy from passive generation into predictive, optimized, and zero-waste clean power
+          ecosystems.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px;">
+          <div class="card-glass" style="border-left: 3px solid var(--alert-crimson);">
+            <div style="font-weight: 700; color: #fca5a5; font-size: 0.95rem;">1. The Core Problem</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Solar generation and demand are
+              misaligned, causing massive daytime solar curtailment and expensive evening grid import.</p>
+          </div>
+          <div class="card-glass" style="border-left: 3px solid var(--solar-amber);">
+            <div style="font-weight: 700; color: #fcd34d; font-size: 0.95rem;">2. EcoGrid AI Solution</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Physics Virtual IoT + 24h
+              Predictive Engine + Gemini Flash AI to actively forecast, schedule loads, and arbitrage battery storage.
+            </p>
+          </div>
+          <div class="card-glass" style="border-left: 3px solid var(--emerald-green);">
+            <div style="font-weight: 700; color: #6ee7b7; font-size: 0.95rem;">3. Quantified Impact</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">+35% higher renewable utilization,
+              ₹48K/month saved per campus building, and 3.2-year solar expansion payback.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Pipeline Architecture -->
+      <div class="pitch-slide" data-slide="2">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div class="sih-badge-tag" style="font-size: 0.85rem; padding: 4px 10px;">System Architecture</div>
+          <button class="close-pitch-btn"
+            style="background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">✕</button>
+        </div>
+        <h2 style="font-size: 2.2rem;">Data ➔ Prediction ➔ Gemini AI ➔ Optimization Pipeline</h2>
+        <div
+          style="background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-glass-glow); border-radius: var(--radius-md); padding: 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.8; color: #34d399;">
+          Virtual IoT Lab (Solar, Smart Meters, Battery, Weather)<br>
+          &nbsp;&nbsp;↓ Telemetry Streaming (JSON Packets)<br>
+          Aggregation & Real-Time Physics Calculation<br>
+          &nbsp;&nbsp;↓ 24h Ahead Horizon Curves<br>
+          AI Prediction Engine & Anomaly Detection<br>
+          &nbsp;&nbsp;↓ Deep Semantic Context<br>
+          Gemini Flash AI Intelligence & Reasoning<br>
+          &nbsp;&nbsp;↓ Actionable Load-Shifting & Battery Arbitrage<br>
+          Instant Microgrid Load Optimization Dispatch
+        </div>
+      </div>
+
+      <!-- Pitch Controls -->
+      <div class="pitch-controls">
+        <span style="color: var(--text-muted); font-weight: 600;" id="pitchSlideCounter">Slide 1 of 2</span>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-secondary" id="prevPitchSlideBtn">◀ Previous</button>
+          <button class="btn-primary" id="nextPitchSlideBtn">Next Slide ▶</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/simulationEngine.js"></script>
+  <script src="js/energyFlowVisualizer.js"></script>
+  <script src="js/predictionEngine.js"></script>
+  <script src="js/geminiIntelligence.js"></script>
+  <script src="js/optimizationEngine.js"></script>
+  <script src="js/anomalyDetector.js"></script>
+  <script src="js/analyticsReports.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "ecogrid-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EcoGrid AI renewable energy intelligence platform",
+  "scripts": {
+    "start": "python -m http.server 4173",
+    "serve": "python -m http.server 4173",
+    "check": "node --check landing.js && node --check app.js && node --check simulationEngine.js && node --check energyFlowVisualizer.js && node --check predictionEngine.js && node --check geminiIntelligence.js && node --check optimizationEngine.js && node --check anomalyDetector.js && node --check analyticsReports.js"
+  }
+}
